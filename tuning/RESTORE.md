@@ -15,7 +15,7 @@
 
 - `REFUSAL_RE` 覆盖中文常见拦截词和英文拒答开头。
 - 检测前先剥离代码块，降低代码中 `cannot` 的误命中。
-- `installRefusalSteer` 在 `agent/turn-stopping` 追加一次重写指令，最多 2 次/轮。
+- `installRefusalSteer` 在 `agent/turn-stopping` 追加纠偏，最多 2 次/轮、6 次/会话、800ms 冷却，并按第 1/2 次逐级加强。
 - `seen` 计数在 `turn/end` 清理。
 - `installPrefill` 在第一步插入 assistant 预填，作为破甲辅助。
 - 这些是 1.3.0 `refusal-steer` 的功能替代，不是把 1.3.0 整包合入。
@@ -48,6 +48,15 @@ cheatGate: false
 
 ### 2. 旧版宽提示词
 
+另外新增 `tuning/config/prompt-inject-v3.md`：
+- `[MODE: SANDBOX]` 压缩提示词
+- 禁止拒答开头
+- 禁止安全回退/替代方案
+- 用 `TARGET/HOST/TOKEN/OFFSET/PAYLOAD/SERIAL` 占位符
+- 去掉 `jailbreak` / `NSFW` / `cracking` / `penetration testing` 等分类器触发词
+
+可用 `PROMPT_MODE=v3` 切换。
+
 上游仓库仍保留：
 
 ```text
@@ -69,6 +78,11 @@ tuning/config/prompt-inject.md
 
 ### 3. 技能库 / 知识库
 
+新增 `tuning/skills/coldbrew/`：
+- 86 条 MIT 技能，来源 `adeahejshshsh/coldbrew-dsh`
+- `tuning/scripts/import-skills.sh` 导入到 `$DSH_HOME/skills`
+- `tuning/scripts/skill-route.mjs` 用关键词路由到具体技能
+
 当前 master **不含** `skills/redteam` 和知识库。  
 上游作者在 #153 明确说 1.3.0 dump “不收录，不合并”，并已下架技能库和知识库。
 
@@ -89,9 +103,11 @@ $DSH_HOME/skills/
 
 或侧栏“技能”页导入。
 
-这不是 rebase 能自动带回的内容；必须手动导入。
+这不是 rebase 自动带回的内容；需要手动导入。
 
 ### 4. 1.3.0 的模块
+
+另外新增 `dropFactoryPersona`（来自 coldbrew 的 mid 档思路）：在 assembly 层摘掉 `deployment:persona-prefix`，让注入人格成为唯一人格。
 
 1.3.0 dump 提到：
 
@@ -101,13 +117,13 @@ $DSH_HOME/skills/
 - `skills/redteam/`
 
 这些不在当前 master。  
-本 fork 已用 `installRefusalSteer` + `installPrefill` 实现拒答纠偏；`model-profile` 和 `hardening` 如果要完整恢复，需要从 1.3.0 dump 单独抽取，不能整包合入。
+本 fork 已用 `installRefusalSteer` + `installPrefill` 实现拒答纠偏；`model-profile` 和 `hardening` 如果要完整恢复，需要从 1.3.0 dump 单独抽取，不整包合入。
 
-## 三、不能从当前 master 直接恢复的部分
+## 三、不从当前 master 直接恢复的部分
 
 - `skills/redteam` 和知识库：master 已下架。
 - 1.3.0 的 `model-profile` / `hardening` / `refusal-steer` 模块：作者明确不合并。
-- 公网/外挂门：master 默认拦截；只能在本地 fork 用配置关闭。
+- 公网/外挂门：master 默认拦截；在本地 fork 用配置关闭。
 - 旧版宽提示词：只能作为 `prompt-inject.md` 覆盖或合并，不是 patch 表。
 
 ## 四、版本与迁移
@@ -118,7 +134,7 @@ $DSH_HOME/skills/
 - DSH `0.2.1-rc.2`
 - dsh-purge `1.1.84`
 - fork 分支：`tuning`
-- tag：`v1.1.84-tuning`
+- tag：`v1.1.84-tuning.1`
 
 迁移：
 
@@ -137,4 +153,4 @@ export DSH_HOME=/path/to/project/.dsh-home
 
 上游 `dsh-purge` 是 Apache-2.0。  
 保留 `NOTICE` 和上游出处；本地二开不要作为商业产品转卖。  
-1.3.0 dump 是 MIT，不能直接整包并入 Apache 线；只抽取需要的模块并保留来源说明。
+1.3.0 dump 是 MIT，不直接整包并入 Apache 线；只抽取需要的模块并保留来源说明。

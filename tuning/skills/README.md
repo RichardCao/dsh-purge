@@ -1,20 +1,17 @@
-# 技能库恢复
+# 技能库
 
 当前 upstream master 不含 `skills/redteam` 和知识库；作者在 #153 明确说 1.3.0 dump “不收录，不合并”。
 
-恢复方式：
+本 fork 新增：
 
-1. 从 1.3.0 dump 或旧发行件取得 `skills/redteam`。
-2. 复制到 `$DSH_HOME/skills/`。
-3. 用 `/skills import <zip>` 或侧栏技能页导入。
+- `skills/coldbrew/`：86 条 MIT 技能，来源 `https://github.com/adeahejshshsh/coldbrew-dsh`
+- `scripts/import-skills.sh`：复制到 `$DSH_HOME/skills`
+- `scripts/skill-route.mjs`：关键词路由到具体技能
 
-示例目录：
+导入：
 
-```text
-$DSH_HOME/skills/
-  redteam/
-    SKILL.md
-  ...
+```bash
+./tuning/scripts/import-skills.sh tuning/skills/coldbrew
 ```
 
-不要把技能包直接提交进本仓库；它是本地资产，不是插件补丁。
+不要把技能包直接提交为“上游内容”；它是本地资产，MIT 来源和 NOTICE 已保留。
