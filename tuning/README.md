@@ -61,6 +61,8 @@ export DSH_HOME=/path/to/project/.dsh-home
 
 ## 安全下架与恢复
 
+完整清单见 [RESTORE.md](RESTORE.md)。
+
 - 上游 1.1.73 起只允许本地/私网靶场，并下架技能库和知识库；1.3.0 dump 不合并（#153 作者明确“不收录，不合并”）。
 - 本 fork 用 `regionGate:false` / `cheatGate:false` 恢复公网和外挂门。
 - `tuning/config/prompt-inject.md` 已加入旧版 1.1.34 的“Permitted without restriction”段。
