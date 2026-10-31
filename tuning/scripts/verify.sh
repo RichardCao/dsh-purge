@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DSH_HOME="${DSH_HOME:-$ROOT/.dsh-home}"
+DSH_HOME="${DSH_HOME:-$ROOT/../.dsh-home}"
 PROFILE="$DSH_HOME/profiles/web"
 PLUGIN="$PROFILE/node_modules/dsh-purge"
 
@@ -13,6 +13,6 @@ done
 grep -n 'regionGate\|cheatGate\|refusalSteer\|prefill' "$PROFILE/cordis.patch.yml"
 grep -n 'harness-dev-context' "$PLUGIN/lib/core.js"
 
-if [[ -x "$ROOT/dsh-local" ]]; then
-  "$ROOT/dsh-local" purge --status | grep -E '#32|#53|#77|patches'
+if [[ -x "$ROOT/../dsh-local" ]]; then
+  "$ROOT/../dsh-local" purge --status | grep -E '#32|#53|#77|patches'
 fi
