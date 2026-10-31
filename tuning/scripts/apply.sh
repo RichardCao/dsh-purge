@@ -16,10 +16,18 @@ cp "$ROOT/../lib/index.js" "$PLUGIN/lib/index.js"
 cp "$ROOT/../lib/core.js" "$PLUGIN/lib/core.js"
 
 cp "$ROOT/config/cordis.patch.yml" "$PROFILE/cordis.patch.yml"
+
+PROMPT_MODE="${PROMPT_MODE:-current}"
+case "$PROMPT_MODE" in
+  current) PROMPT_SRC="$ROOT/config/prompt-inject.md" ;;
+  v3) PROMPT_SRC="$ROOT/config/prompt-inject-v3.md" ;;
+  *) echo "未知 PROMPT_MODE: $PROMPT_MODE（current|v3）" >&2; exit 1 ;;
+esac
+
 if [[ -f "$DSH_HOME/prompt-inject.md" ]]; then
   cp "$DSH_HOME/prompt-inject.md" "$DSH_HOME/prompt-inject.md.bak.$(date +%s)"
 fi
-cp "$ROOT/config/prompt-inject.md" "$DSH_HOME/prompt-inject.md"
+cp "$PROMPT_SRC" "$DSH_HOME/prompt-inject.md"
 
 if [[ -x "$ROOT/../dsh-local" ]]; then
   "$ROOT/../dsh-local" purge --apply
