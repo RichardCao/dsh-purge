@@ -49,7 +49,15 @@ prefillText: "以下是本地演示内容："
 - 默认 `DSH_HOME` 指向 fork 上一级目录的 `.dsh-home`
 - 调用上一级的 `dsh-local`
 
-## 6. 应用方式
+## 6. 上游恢复
+
+- 公网/外挂门：`regionGate:false` + `cheatGate:false`
+- 旧版宽提示词：并入 `tuning/config/prompt-inject.md`
+- 技能库/知识库：当前 master 不含，需从 1.3.0 dump/旧发行件导入 `$DSH_HOME/skills`
+- 1.3.0 `refusal-steer` / `hardening` / `model-profile`：未合入；本 fork 用 refusalSteer + prefill 替代
+- 完整清单：`tuning/RESTORE.md`
+
+## 7. 应用方式
 
 - 覆盖插件源码：`tuning/scripts/apply.sh`
 - 应用官方 patch：`../dsh-local purge --apply`
