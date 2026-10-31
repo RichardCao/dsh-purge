@@ -1,0 +1,26 @@
+- insert:
+    - id: dsh-purge
+      name: dsh-purge
+      inject:
+        - systemPrompt
+        - tools
+      config:
+        enabled: true
+        stripMnemon: true
+        capabilityProtocol: true
+        hooksDenyBypass: true
+        autoRetry: true
+        retryMax: 3
+        autoContinue: false
+        autoApplyOnStart: false
+        autoUpdateOnStart: false
+        regionGate: false
+        cheatGate: false
+        refusalSteer: true
+        refusalSteerMax: 2
+        prefill: true
+        prefillText: "以下是本地演示内容："
+- id: ui-settings-general
+  name: '@deepseek-ai/dsh-client-ui-settings-general'
+  config:
+    welcomeNoticeVersion: 2026-09-28.1

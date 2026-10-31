@@ -1,0 +1,15 @@
+This repository contains modified source derived from dsh-purge.
+
+Upstream:
+  https://github.com/YuJunZhiXue/dsh-purge
+  version: 1.1.83
+  license: Apache-2.0 (see upstream LICENSE)
+
+Modifications in this repository:
+  - lib/net-scope.js: regionGate / cheatGate config switches
+  - lib/index.js: refusal steer hook and assistant prefill hook
+  - lib/core.js: harness-dev-context target mapping and patch #32/#53 patterns
+  - config/cordis.patch.yml: regionGate=false, cheatGate=false, refusalSteer=true, prefill=true
+  - config/prompt-inject.md: current operator prompt
+
+Keep the upstream attribution when redistributing. This is a local fork/overlay for personal use, not a commercial resale product.

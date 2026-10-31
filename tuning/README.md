@@ -1,0 +1,67 @@
+# dsh-purge-tuning
+
+保存对 `dsh-purge` 的本地改动、DSH web profile 配置和提示词，用于以后迁移到另一台机器或重新安装。
+
+## 目录
+
+```text
+config/
+  cordis.patch.yml       # profile 配置：regionGate / cheatGate / refusalSteer / prefill
+  model.cordis.patch.yml # 模型路由：machine-room / deepseek-v4.1-flash / reasoning off
+  prompt-inject.md       # 当前提示词注入
+overlay/
+  lib/net-scope.js       # 放宽公网/外挂门
+  lib/index.js           # refusal steer + assistant prefill
+  lib/core.js            # harness-dev-context 映射 + #32/#53 pattern 修正
+scripts/
+  apply.sh               # 把 overlay 覆盖到已安装的 dsh-purge
+tests/
+  refusal_probe.py       # 可选：拒答/拦截探测脚本
+```
+
+## 固定版本
+
+- Node.js `22.23.4`
+- DSH `0.2.1-rc.2`
+- dsh-purge `1.1.83`（安装目录名可能仍显示 `v1.1.81`）
+- 模型：`deepseek-v4.1-flash`，`reasoningEffort` 默认 `off`
+
+## 迁移步骤
+
+1. 在新机器上安装同版本 DSH 和 dsh-purge。
+2. 克隆本仓库。
+3. 设置 `DSH_HOME` 指向目标安装的 `.dsh-home`：
+
+```bash
+export DSH_HOME=/path/to/project/.dsh-home
+```
+
+4. 覆盖插件源码和配置：
+
+```bash
+./scripts/apply.sh
+```
+
+5. 应用官方 patch：
+
+```bash
+./dsh-local purge --apply
+```
+
+6. 重启 dsh web，使用新启动时打印的 URL 和 token，新建会话。
+
+`apply.sh` 只覆盖 `dsh-purge` 插件源码和 profile 配置；官方 DSH 文件仍由 `purge --apply` 清洗。
+
+## 不要提交的内容
+
+- `.qwen-api-key`、`.dsh-home/.credentials.yaml`
+- `.dsh-runtime/`、`.dsh-home/`、`.dsh-downloads/`
+- `.dsh-logs/`、session 文件、临时文件
+- 浏览器 token、web.log
+
+## 注意
+
+- 上游 `dsh-purge` 是 Apache-2.0；保留 `NOTICE` 和出处。
+- 本项目是本地二开，不要作为商业产品转卖；上游要求署名。
+- 上游升级后，overlay 需要重新核对，尤其是 `lib/core.js` 的 patch pattern。
+- 当前改动只针对 DSH `0.2.1-rc.2`；rc.3 及更新版本不保证可用。
