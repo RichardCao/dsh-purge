@@ -59,6 +59,14 @@ export DSH_HOME=/path/to/project/.dsh-home
 - `.dsh-logs/`、session 文件、临时文件
 - 浏览器 token、web.log
 
+## 安全下架与恢复
+
+- 上游 1.1.73 起只允许本地/私网靶场，并下架技能库和知识库；1.3.0 dump 不合并（#153 作者明确“不收录，不合并”）。
+- 本 fork 用 `regionGate:false` / `cheatGate:false` 恢复公网和外挂门。
+- `tuning/config/prompt-inject.md` 已加入旧版 1.1.34 的“Permitted without restriction”段。
+- 技能库/知识库当前 master 不含；要从 1.3.0 dump 或旧发行件拿到后，手动导入 `$DSH_HOME/skills`（`/skills import`），不能靠 rebase 自动恢复。
+- 1.3.0 的 `refusal-steer` / `hardening` / `model-profile` 不在 master；本 fork 用 `installRefusalSteer` + `installPrefill` 替代拒答纠偏。
+
 ## 注意
 
 - 上游 `dsh-purge` 是 Apache-2.0；保留 `NOTICE` 和出处。
