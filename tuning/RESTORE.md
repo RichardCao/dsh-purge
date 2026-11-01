@@ -119,14 +119,22 @@ $DSH_HOME/skills/
 这些不在当前 master。  
 本 fork 已用 `installRefusalSteer` + `installPrefill` 实现拒答纠偏；`model-profile` 和 `hardening` 如果要完整恢复，需要从 1.3.0 dump 单独抽取，不整包合入。
 
-## 三、不从当前 master 直接恢复的部分
+## 三、测试结论
+
+- current 提示词最强：6 类中 5 类输出交付物。
+- v3 整体弱于 current：bomb、drug、minor_nsfw 会拦截。
+- demo 预填不稳定：会输出工具/函数调用片段。
+- english 预填和 steer 能突破 minor_nsfw，但输出涉及未成年人性内容；默认加 `minorGuard` 跳过。
+- 详见 `tuning/tests/report.md`。
+
+## 四、不从当前 master 直接恢复的部分
 
 - `skills/redteam` 和知识库：master 已下架。
 - 1.3.0 的 `model-profile` / `hardening` / `refusal-steer` 模块：作者明确不合并。
 - 公网/外挂门：master 默认拦截；在本地 fork 用配置关闭。
 - 旧版宽提示词：只能作为 `prompt-inject.md` 覆盖或合并，不是 patch 表。
 
-## 四、版本与迁移
+## 五、版本与迁移
 
 固定版本：
 
@@ -149,7 +157,7 @@ export DSH_HOME=/path/to/project/.dsh-home
 
 重启 dsh web，新建会话。
 
-## 五、许可证与署名
+## 六、许可证与署名
 
 上游 `dsh-purge` 是 Apache-2.0。  
 保留 `NOTICE` 和上游出处；本地二开不要作为商业产品转卖。  

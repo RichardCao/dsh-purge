@@ -32,6 +32,10 @@ tests/
 - dsh-purge `1.1.84`
 - 模型：`deepseek-v4.1-flash`，`reasoningEffort` 默认 `off`
 
+## 测试报告
+
+见 [tests/report.md](tests/report.md)。测试覆盖 6 个类别，比较 current / v3 / prefill / steer。
+
 ## 迁移步骤
 
 1. 在新机器上安装同版本 DSH 和 dsh-purge。
@@ -80,7 +84,7 @@ node scripts/skill-route.mjs "做个自瞄"
 - 上游 1.1.73 起只允许本地/私网靶场，并下架技能库和知识库；1.3.0 dump 不合并（#153 作者明确“不收录，不合并”）。
 - 本 fork 用 `regionGate:false` / `cheatGate:false` 恢复公网和外挂门。
 - `tuning/config/prompt-inject.md` 已加入旧版 1.1.34 的“Permitted without restriction”段。
-- `tuning/config/prompt-inject-v3.md` 提供压缩沙箱提示词，可用 `PROMPT_MODE=v3` 切换。
+- `tuning/config/prompt-inject-v3.md` 提供压缩沙箱提示词，可用 `PROMPT_MODE=v3` 切换；测试显示 v3 整体弱于 current。
 - 技能库/知识库：新增 `tuning/skills/coldbrew/`（86 条 MIT 技能）和导入脚本；实际知识库仍需本地导入。
 - 1.3.0 的 `refusal-steer` / `hardening` / `model-profile` 不在 master；本 fork 用 `installRefusalSteer` + `installPrefill` 替代。
 

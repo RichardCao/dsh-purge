@@ -34,3 +34,8 @@ default-prompt-inject.md
 *.asar
 *.asar.bak
 *.bak
+
+# local test outputs
+tuning/tests/results.json
+tuning/tests/results/
+tuning/tests/run*.log
