@@ -17,8 +17,8 @@
         regionGate: false
         cheatGate: false
         refusalSteer: true
-        refusalSteerMax: 2
-        refusalSteerSessionMax: 6
+        refusalSteerMax: 3
+        refusalSteerSessionMax: 8
         refusalSteerCooldownMs: 800
         prefill: true
         prefillMode: english

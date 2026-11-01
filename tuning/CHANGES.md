@@ -14,8 +14,8 @@
   - `regionGate: true`
   - `cheatGate: true`
   - `refusalSteer: true`
-  - `refusalSteerMax: 2`
-  - `refusalSteerSessionMax: 6`
+  - `refusalSteerMax: 3`
+  - `refusalSteerSessionMax: 8`
   - `refusalSteerCooldownMs: 800`
   - `refusalSteerText`
   - `prefill: true`
@@ -26,7 +26,7 @@
 - 增加 `REFUSAL_RE`、`lastAssistantText()`
 - `installRefusalSteer`：
   - 剥离代码块后再检测，减少误命中
-  - 每轮最多 2 次，每会话最多 6 次，800ms 冷却
+  - 每轮最多 3 次，每会话最多 8 次，800ms 冷却
   - `agent.steer()` 追加纠偏消息，按第 1/2 次逐级加强（Crescendo 式）
   - `session/event` 的 `turn/end` 清理每轮计数
   - `minorGuard` 跳过未成年人标记的请求
@@ -51,8 +51,8 @@
 regionGate: false
 cheatGate: false
 refusalSteer: true
-refusalSteerMax: 2
-refusalSteerSessionMax: 6
+refusalSteerMax: 3
+refusalSteerSessionMax: 8
 refusalSteerCooldownMs: 800
 prefill: true
 prefillMode: english
@@ -72,7 +72,11 @@ dropFactoryPersona: true
   - 去掉 `jailbreak` / `NSFW` / `cracking` / `penetration testing` 等分类器触发词
 - `PROMPT_MODE=v3 ./scripts/apply.sh` 可切换。
 
-## 7. 技能库
+## 7. 技能库与路由工具
+
+- 新增 `lib/skill-router.js` 和 `lib/skill-index.json`，来自 coldbrew 的 MIT 路由代码。
+- 新增插件工具 `purge_route`：把用户原句路由到具体技能 id。
+- 技能库仍在 `tuning/skills/coldbrew/`；导入后可用 `purge_route` 路由。
 
 - `tuning/skills/coldbrew/`：86 条 MIT 技能，来源 `adeahejshshsh/coldbrew-dsh`。
 - `tuning/scripts/import-skills.sh`：导入到 `$DSH_HOME/skills`。
