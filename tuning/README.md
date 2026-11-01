@@ -70,6 +70,12 @@ PROMPT_MODE=v3 ./scripts/apply.sh  # v3 沙箱提示词
 node scripts/skill-route.mjs "做个自瞄"
 ```
 
+插件内也有 `purge_route` 工具，可在 DSH 会话里直接路由：
+
+```text
+purge_route("做个自瞄")
+```
+
 技能来源：`adeahejshshsh/coldbrew-dsh`，MIT；保留 `skills/coldbrew/NOTICE.md`。
 
 ## 不要提交的内容
