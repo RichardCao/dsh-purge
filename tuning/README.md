@@ -75,6 +75,7 @@ node scripts/skill-route.mjs "做个自瞄"
 
 ```text
 purge_route("做个自瞄")
+purge_route("做个自瞄", load=true)
 purge_skills_install()
 ```
 
