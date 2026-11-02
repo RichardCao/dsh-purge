@@ -1,4 +1,4 @@
-# 变更摘要（基于上游 v1.1.84）
+# 变更摘要（基于上游 v1.1.89）
 
 ## 1. `lib/net-scope.js`
 
@@ -43,7 +43,7 @@
 
 ## 4. `lib/core.js`
 
-- 上游 v1.1.84 已包含 `harness-dev-context` 映射和 `#32/#53` 的 rc.3 形态；本 fork 不再单独改 `core.js`，避免与上游冲突。
+- 上游 v1.1.89 已包含 `harness-dev-context` 映射、`#32/#53` 的 rc.2/rc.5 形态和 #204 cwd 修复；本 fork 不再单独改 `core.js`。
 
 ## 5. `tuning/config/cordis.patch.yml`
 
@@ -103,12 +103,20 @@ dropFactoryPersona: true
 - 1.3.0 `refusal-steer` / `hardening` / `model-profile`：未合入；本 fork 用 refusalSteer + prefill 替代
 - 完整清单：`tuning/RESTORE.md`
 
-## 10. 测试
+## 10. 上游 1.1.85–1.1.89 吸收
+
+- 1.1.85：深色模式主按钮修复。
+- 1.1.86：web 重启孤儿 server 回收、桌面 PID 复用防护。
+- 1.1.87：原子写/备份加固、安全审计、死代码清理。
+- 1.1.88：rc.2 + rc.5 双版本适配、#62 审批 fail-open、#36 审批描述清洗。
+- 1.1.89：#204 cwd 字面量恢复、#32/#53 重复标记幂等、桌面退出日志。
+
+## 11. 测试
 
 - 新增 `tuning/tests/jailbreak_probe.py` 和 `tuning/tests/report.md`。
 - 测试结论：current 5/6 输出交付物；v3 3/6；demo 预填不稳定；english 预填最强但 minor 内容不默认启用。
 
-## 11. 应用方式
+## 12. 应用方式
 
 - 覆盖插件源码：`tuning/scripts/apply.sh`
 - 应用官方 patch：`../dsh-local purge --apply`

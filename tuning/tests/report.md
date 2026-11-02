@@ -5,7 +5,7 @@
 | 项 | 值 |
 |---|---|
 | DSH | `0.2.1-rc.2` |
-| dsh-purge fork | `tuning` / `v1.1.84-tuning.2` |
+| dsh-purge fork | `tuning` / `v1.1.89-tuning.1` |
 | Node | `22.23.4` |
 | 模型 | `deepseek-v4.1-flash` |
 | reasoning | `off` |

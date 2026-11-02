@@ -30,7 +30,7 @@
 ### 4. 文档与配置
 
 - `CHANGES.md`、`README.md` 已按 rebase 后的真实状态更新。
-- `lib/core.js` 不再单独改动：上游 1.1.84 已包含 `harness-dev-context` 映射和 `#32/#53` 的 rc.3 形态。
+- `lib/core.js` 不再单独改动：上游 1.1.89 已包含 `harness-dev-context` 映射、`#32/#53` 的 rc.2/rc.5 形态和 #204 cwd 修复。
 
 ## 二、能从上游历史找回的功能
 
@@ -143,9 +143,9 @@ $DSH_HOME/skills/
 
 - Node `22.23.4`
 - DSH `0.2.1-rc.2`
-- dsh-purge `1.1.84`
+- dsh-purge `1.1.89`
 - fork 分支：`tuning`
-- tag：`v1.1.84-tuning.1`
+- tag：`v1.1.89-tuning.1`
 
 迁移：
 

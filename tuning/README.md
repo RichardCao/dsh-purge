@@ -1,6 +1,6 @@
 # dsh-purge tuning
 
-本 fork 基于上游 `v1.1.84`，保存本地修正、可恢复能力和迁移配置。
+本 fork 已 rebase 到上游 `v1.1.89`，保存本地修正、可恢复能力和迁移配置。
 
 ## 目录
 
@@ -29,7 +29,7 @@ tests/
 
 - Node.js `22.23.4`
 - DSH `0.2.1-rc.2`
-- dsh-purge `1.1.84`
+- dsh-purge `1.1.89`
 - 模型：`deepseek-v4.1-flash`，`reasoningEffort` 默认 `off`
 
 ## 测试报告
