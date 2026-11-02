@@ -77,6 +77,7 @@ dropFactoryPersona: true
 
 - 新增 `lib/skill-router.js` 和 `lib/skill-index.json`，来自 coldbrew 的 MIT 路由代码。
 - 新增插件工具 `purge_route`：把用户原句路由到具体技能 id。
+- `purge_route(..., load=true)` 可直接返回该技能的 SKILL.md 正文。
 - 新增插件工具 `purge_skills_install`：把 `lib/skill-bank` 的 86 条技能导入 `$DSH_HOME/skills`。
 - `lib/skill-bank/NOTICE.md` 保留 MIT 来源。
 - 技能库仍在 `tuning/skills/coldbrew/`；导入后可用 `purge_route` 路由。

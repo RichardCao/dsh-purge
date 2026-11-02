@@ -82,7 +82,7 @@ tuning/config/prompt-inject.md
 - 86 条 MIT 技能，来源 `adeahejshshsh/coldbrew-dsh`
 - `tuning/scripts/import-skills.sh` 导入到 `$DSH_HOME/skills`
 - `tuning/scripts/skill-route.mjs` 用关键词路由到具体技能
-- 插件内新增 `purge_route` 工具，复用同一路由表
+- 插件内新增 `purge_route` 工具，复用同一路由表；`load=true` 可直接载入 SKILL.md
 - 插件内新增 `purge_skills_install` 工具，直接导入 86 条技能
 
 当前 master **不含** `skills/redteam` 和知识库。  
