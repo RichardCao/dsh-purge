@@ -71,12 +71,13 @@ PROMPT_MODE=policy ./scripts/apply.sh  # Policy Puppetry 实验
 node scripts/skill-route.mjs "做个自瞄"
 ```
 
-插件内也有 `purge_route` 工具和 `purge_skills_install` 工具：
+插件内也有 `purge_route`、`purge_skills_install`、`purge_skills_verify` 工具：
 
 ```text
 purge_route("做个自瞄")
 purge_route("做个自瞄", load=true)
 purge_skills_install()
+purge_skills_verify()
 ```
 
 技能来源：`adeahejshshsh/coldbrew-dsh`，MIT；保留 `skills/coldbrew/NOTICE.md`。

@@ -79,6 +79,7 @@ dropFactoryPersona: true
 - 新增插件工具 `purge_route`：把用户原句路由到具体技能 id。
 - `purge_route(..., load=true)` 可直接返回该技能的 SKILL.md 正文。
 - 新增插件工具 `purge_skills_install`：把 `lib/skill-bank` 的 86 条技能导入 `$DSH_HOME/skills`。
+- 新增插件工具 `purge_skills_verify`：校验 86 条技能的 missing / invalid。
 - `lib/skill-bank/NOTICE.md` 保留 MIT 来源。
 - 技能库仍在 `tuning/skills/coldbrew/`；导入后可用 `purge_route` 路由。
 
