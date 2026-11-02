@@ -51,6 +51,7 @@ export DSH_HOME=/path/to/project/.dsh-home
 ```bash
 ./scripts/apply.sh            # current 提示词
 PROMPT_MODE=v3 ./scripts/apply.sh  # v3 沙箱提示词
+PROMPT_MODE=policy ./scripts/apply.sh  # Policy Puppetry 实验
 ```
 
 5. 应用官方 patch：
@@ -70,10 +71,11 @@ PROMPT_MODE=v3 ./scripts/apply.sh  # v3 沙箱提示词
 node scripts/skill-route.mjs "做个自瞄"
 ```
 
-插件内也有 `purge_route` 工具，可在 DSH 会话里直接路由：
+插件内也有 `purge_route` 工具和 `purge_skills_install` 工具：
 
 ```text
 purge_route("做个自瞄")
+purge_skills_install()
 ```
 
 技能来源：`adeahejshshsh/coldbrew-dsh`，MIT；保留 `skills/coldbrew/NOTICE.md`。
