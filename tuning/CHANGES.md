@@ -28,7 +28,8 @@
   - 剥离代码块后再检测，减少误命中
   - 每轮最多 3 次，每会话最多 8 次，800ms 冷却
   - `agent.steer()` 追加纠偏消息，按第 1/2 次逐级加强（Crescendo 式）
-  - `session/event` 的 `turn/end` 清理每轮计数
+  - `session/event` 的 `turn/end` 清理每轮计数；`session/end` 清理会话计数
+  - `lastAssistantText` 跳过只有工具调用的空 assistant 段，避免漏检
   - `minorGuard` 跳过未成年人标记的请求
 - `installPrefill`：
   - 在 `agent/pre-step` 第一 step 末尾插入 assistant 预填
