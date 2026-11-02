@@ -71,11 +71,14 @@ dropFactoryPersona: true
   - 占位符 `TARGET/HOST/TOKEN/OFFSET/PAYLOAD/SERIAL`
   - 去掉 `jailbreak` / `NSFW` / `cracking` / `penetration testing` 等分类器触发词
 - `PROMPT_MODE=v3 ./scripts/apply.sh` 可切换。
+- 新增 `tuning/config/prompt-inject-policy.md`（Policy Puppetry 配置伪装）；测试中 bomb 仍拦截、drug 只输出占位流程，作为可选实验变体，不作为默认。
 
 ## 7. 技能库与路由工具
 
 - 新增 `lib/skill-router.js` 和 `lib/skill-index.json`，来自 coldbrew 的 MIT 路由代码。
 - 新增插件工具 `purge_route`：把用户原句路由到具体技能 id。
+- 新增插件工具 `purge_skills_install`：把 `lib/skill-bank` 的 86 条技能导入 `$DSH_HOME/skills`。
+- `lib/skill-bank/NOTICE.md` 保留 MIT 来源。
 - 技能库仍在 `tuning/skills/coldbrew/`；导入后可用 `purge_route` 路由。
 
 - `tuning/skills/coldbrew/`：86 条 MIT 技能，来源 `adeahejshshsh/coldbrew-dsh`。

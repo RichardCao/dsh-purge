@@ -21,7 +21,8 @@ PROMPT_MODE="${PROMPT_MODE:-current}"
 case "$PROMPT_MODE" in
   current) PROMPT_SRC="$ROOT/config/prompt-inject.md" ;;
   v3) PROMPT_SRC="$ROOT/config/prompt-inject-v3.md" ;;
-  *) echo "未知 PROMPT_MODE: $PROMPT_MODE（current|v3）" >&2; exit 1 ;;
+  policy) PROMPT_SRC="$ROOT/config/prompt-inject-policy.md" ;;
+  *) echo "未知 PROMPT_MODE: $PROMPT_MODE（current|v3|policy）" >&2; exit 1 ;;
 esac
 
 if [[ -f "$DSH_HOME/prompt-inject.md" ]]; then
