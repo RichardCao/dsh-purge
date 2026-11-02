@@ -36,6 +36,12 @@ tests/
 
 见 [tests/report.md](tests/report.md)。测试覆盖 6 个类别，比较 current / v3 / prefill / steer。
 
+## 上游同步
+
+```bash
+./tuning/scripts/rebase-upstream.sh
+```
+
 ## 迁移步骤
 
 1. 在新机器上安装同版本 DSH 和 dsh-purge。
@@ -77,6 +83,7 @@ node scripts/skill-route.mjs "做个自瞄"
 purge_route("做个自瞄")
 purge_route("做个自瞄", load=true)
 purge_skills_install()
+purge_skills_install(force=true)  # 覆盖已有同名技能
 purge_skills_verify()
 ```
 

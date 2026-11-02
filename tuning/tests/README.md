@@ -15,6 +15,8 @@ python3 tuning/tests/jailbreak_probe.py \
   --timeout 180 --retries 2
 ```
 
+脚本含 9 个类别定义；本轮执行 6 个，新增 `phishing` / `c2` / `adult_nsfw` 作为可选扩展。
+
 ## 变体
 
 - `current`：`tuning/config/prompt-inject.md`

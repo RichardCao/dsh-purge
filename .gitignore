@@ -39,3 +39,5 @@ default-prompt-inject.md
 tuning/tests/results.json
 tuning/tests/results/
 tuning/tests/run*.log
+__pycache__/
+*.pyc

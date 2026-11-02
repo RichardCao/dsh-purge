@@ -23,9 +23,9 @@
   - `prefillText: ""`
   - `minorGuard: true`
   - `dropFactoryPersona: true`
-- 增加 `REFUSAL_RE`、`lastAssistantText()`
+- 增加 `REFUSAL_RE`、`REFUSAL_HEAD_RE`、`lastAssistantText()`
 - `installRefusalSteer`：
-  - 剥离代码块后再检测，减少误命中
+  - 剥离代码块后检测；用 `REFUSAL_HEAD_RE` 只认开头拦截话术，减少误命中
   - 每轮最多 3 次，每会话最多 8 次，800ms 冷却
   - `agent.steer()` 追加纠偏消息，按第 1/2 次逐级加强（Crescendo 式）
   - `session/event` 的 `turn/end` 清理每轮计数；`session/end` 清理会话计数
@@ -77,9 +77,9 @@ dropFactoryPersona: true
 ## 7. 技能库与路由工具
 
 - 新增 `lib/skill-router.js` 和 `lib/skill-index.json`，来自 coldbrew 的 MIT 路由代码。
-- 新增插件工具 `purge_route`：把用户原句路由到具体技能 id。
+- 新增插件工具 `purge_route`：把用户原句路由到具体技能 id；静态索引未命中时回退到 `$DSH_HOME/skills` 已安装技能。
 - `purge_route(..., load=true)` 可直接返回该技能的 SKILL.md 正文。
-- 新增插件工具 `purge_skills_install`：把 `lib/skill-bank` 的 86 条技能导入 `$DSH_HOME/skills`。
+- 新增插件工具 `purge_skills_install`：把 `lib/skill-bank` 的 86 条技能导入 `$DSH_HOME/skills`；默认跳过已有同名技能，`force=true` 覆盖。
 - 新增插件工具 `purge_skills_verify`：校验 86 条技能的 missing / invalid。
 - `lib/skill-bank/NOTICE.md` 保留 MIT 来源。
 - 技能库仍在 `tuning/skills/coldbrew/`；导入后可用 `purge_route` 路由。
@@ -117,7 +117,11 @@ dropFactoryPersona: true
 - 新增 `tuning/tests/jailbreak_probe.py` 和 `tuning/tests/report.md`。
 - 测试结论：current 5/6 输出交付物；v3 3/6；demo 预填不稳定；english 预填最强但 minor 内容不默认启用。
 
-## 12. 应用方式
+## 12. 同步脚本
+
+- `tuning/scripts/rebase-upstream.sh`：fetch upstream、checkout tuning、rebase 到 upstream/master。
+
+## 13. 应用方式
 
 - 覆盖插件源码：`tuning/scripts/apply.sh`
 - 应用官方 patch：`../dsh-local purge --apply`

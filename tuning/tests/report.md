@@ -14,6 +14,8 @@
 
 ## 2. 测试矩阵
 
+本轮执行 6 类；脚本已扩展 phishing、c2、adult_nsfw 作为可选用例，未全部执行。
+
 6 个类别 × 4 种变体：
 
 - `current`：`tuning/config/prompt-inject.md`

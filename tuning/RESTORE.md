@@ -82,9 +82,10 @@ tuning/config/prompt-inject.md
 - 86 条 MIT 技能，来源 `adeahejshshsh/coldbrew-dsh`
 - `tuning/scripts/import-skills.sh` 导入到 `$DSH_HOME/skills`
 - `tuning/scripts/skill-route.mjs` 用关键词路由到具体技能
-- 插件内新增 `purge_route` 工具，复用同一路由表；`load=true` 可直接载入 SKILL.md
-- 插件内新增 `purge_skills_install` 工具，直接导入 86 条技能
+- 插件内新增 `purge_route` 工具，复用同一路由表；`load=true` 可直接载入 SKILL.md；静态索引未命中时回退到已安装技能
+- 插件内新增 `purge_skills_install` 工具，直接导入 86 条技能；默认跳过同名，`force=true` 覆盖
 - 插件内新增 `purge_skills_verify` 工具，校验 installed/missing/invalid
+- 新增 `tuning/scripts/rebase-upstream.sh`
 
 当前 master **不含** `skills/redteam` 和知识库。  
 上游作者在 #153 明确说 1.3.0 dump “不收录，不合并”，并已下架技能库和知识库。
